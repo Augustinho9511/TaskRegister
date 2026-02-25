@@ -14,7 +14,10 @@
 <h:body>
     <div class="container mt-4">
         <div class="card p-3 mb-4">
-            <h5>Listagem de Tarefas</h5>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="m-0">Listagem de Tarefas</h5>
+            <h:link outcome="index" value="+ Cadastrar Nova Tarefa" class="btn btn-primary" />
+            </div>
             <h:form id="formBusca">
                 <div class="row">
                     <div class="col-md-3">
