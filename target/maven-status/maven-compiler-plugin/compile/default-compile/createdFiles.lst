@@ -1,0 +1,6 @@
+model\Task.class
+dao\TaskDAO.class
+dao\ProfileDAO.class
+listener\AppStartupListener.class
+model\Profile.class
+bean\TaskMB.class
