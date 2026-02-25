@@ -21,10 +21,14 @@ public class Profile implements Serializable {
 	@SequenceGenerator(name = "seqp", sequenceName = "profile_sequence", allocationSize = 0)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqp")
 	@Column(name = "id")
-	Long id;
+	private Long id;
 	
 	@Column(name = "name")
-	String name;
+	private String name;
+	
+	public Profile() {
+		
+	}
 	
 	public Long getId() {
 		return id;

@@ -13,6 +13,7 @@ public class TaskDAO {
     
     public void save(Task task) {
         EntityManager em = emf.createEntityManager();
+        
         try {
             em.getTransaction().begin();
             if (task.getId() == null) {
@@ -22,7 +23,9 @@ public class TaskDAO {
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            if (em.getTransaction().isActive()) {
+            	em.getTransaction().rollback();
+            }
         } finally {
             em.close();
         }
@@ -30,6 +33,7 @@ public class TaskDAO {
 
     public List<Task> list() {
         EntityManager em = emf.createEntityManager();
+        
         List<Task> taskList = em.createQuery("FROM Task", Task.class).getResultList();
         em.close();
         return taskList;
@@ -37,6 +41,7 @@ public class TaskDAO {
 
     public void delete(Long id) {
         EntityManager em = emf.createEntityManager();
+        
         try {
             em.getTransaction().begin();
             Task task = em.find(Task.class, id);
@@ -53,6 +58,7 @@ public class TaskDAO {
 
     public Task findById(Long id) {
         EntityManager em = emf.createEntityManager();
+        
         try {
             return em.find(Task.class, id);
         } finally {

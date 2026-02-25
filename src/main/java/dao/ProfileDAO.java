@@ -36,6 +36,7 @@ public class ProfileDAO {
     
     public List<Profile> list() {
         EntityManager em = emf.createEntityManager();
+        
         List<Profile> profileList = em.createQuery("FROM Profile", Profile.class).getResultList();
         em.close();
         return profileList;
@@ -43,6 +44,7 @@ public class ProfileDAO {
 
     public Profile findById(Long id) {
         EntityManager em = emf.createEntityManager();
+        
         try {
             return em.find(Profile.class, id);
         } finally {

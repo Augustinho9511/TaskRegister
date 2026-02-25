@@ -7,44 +7,74 @@
       
 <h:head>
     <meta charset="UTF-8" />
-    <title>Gerenciador de Tarefas - Cadastro/Edição</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    
     <style>
-        .form-container { max-width: 600px; margin: 50px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
-        .header-title { background-color: #f8f9fa; padding: 10px; margin: -20px -20px 20px -20px; border-bottom: 1px solid #ddd; }
+        body { font-family: 'Inter', sans-serif; }
+        .navbar-custom { background-color: #222 !important; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .card-custom { border: 1px solid #444; border-radius: 10px; background-color: #303030; padding: 30px; margin-top: 40px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
+        
+        
+        .form-control {
+            background-color: #444 !important;
+            color: #eee !important;
+            border: 1px solid #555;
+            border-radius: 6px;
+        }
+        .form-control:focus {
+            background-color: #505050 !important; 
+            border-color: #375a7f;
+        }
+        
+        select.form-control option { background-color: #444; color: #eee; }
+        
+        ::placeholder { color: #aaa !important; opacity: 1; }
+
+        .btn-primary { border-radius: 6px; font-weight: 500; }
+        label { color: #ddd; }
     </style>
 </h:head>
 
 <h:body>
-    <div class="container">
-        <div class="form-container">
-            <div class="header-title">
-                <h4 class="m-0">Cadastrar / Editar Tarefa</h4>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold" href="listagem.xhtml">✅ Gerenciador de Tarefas</a>
+            <h:link outcome="listagem" value="Ir para Listagem" class="btn btn-outline-light btn-sm rounded-pill" />
+        </div>
+    </nav>
+
+    <div class="container d-flex justify-content-center">
+        <div class="card card-custom w-100" style="max-width: 650px;">
+            <div class="text-center mb-4">
+                <h4 class="m-0 font-weight-bold text-white">Cadastro de Tarefa</h4>
+                <p class="text-muted small">Preencha os dados abaixo para registrar uma nova atividade.</p>
             </div>
             
             <h:form id="formCadastro">
                 <h:inputHidden value="#{taskMB.task.id}" />
 
                 <div class="form-group">
-                    <h:outputLabel for="titulo" value="Título:" />
-                    <h:inputText id="titulo" value="#{taskMB.task.title}" class="form-control" />
+                    <h:outputLabel for="titulo" value="Título da Tarefa" class="font-weight-bold" />
+                    <h:inputText id="titulo" value="#{taskMB.task.title}" class="form-control" a:placeholder="Ex: Atualizar banco de dados..." />
                 </div>
 
                 <div class="form-group">
-                    <h:outputLabel for="descricao" value="Descrição:" />
+                    <h:outputLabel for="descricao" value="Descrição Detalhada" class="font-weight-bold" />
                     <h:inputTextarea id="descricao" value="#{taskMB.task.description}" class="form-control" rows="3" />
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <h:outputLabel for="responsavel" value="Responsável:" />
+                        <h:outputLabel for="responsavel" value="Responsável" class="font-weight-bold" />
                         <h:selectOneMenu id="responsavel" value="#{taskMB.profile.id}" class="form-control">
-                            <f:selectItem itemLabel="Selecione..." itemValue="" />
+                            <f:selectItem itemLabel="Selecione um colaborador" itemValue="" />
                             <f:selectItems value="#{taskMB.profiles}" var="p" itemLabel="#{p.name}" itemValue="#{p.id}" />
                         </h:selectOneMenu>
                     </div>
                     <div class="col-md-6 form-group">
-                        <h:outputLabel for="prioridade" value="Prioridade:" />
+                        <h:outputLabel for="prioridade" value="Nível de Prioridade" class="font-weight-bold" />
                         <h:selectOneMenu id="prioridade" value="#{taskMB.task.priority}" class="form-control">
                             <f:selectItem itemLabel="Selecione..." itemValue="" />
                             <f:selectItem itemLabel="Alta" itemValue="ALTA" />
@@ -55,12 +85,12 @@
                 </div>
 
                 <div class="form-group">
-                    <h:outputLabel for="deadline" value="Deadline:" />
+                    <h:outputLabel for="deadline" value="Prazo (Deadline)" class="font-weight-bold" />
                     <h:inputText id="deadline" value="#{taskMB.task.deadline}" class="form-control" a:placeholder="dd/mm/aaaa" />
                 </div>
 
-                <div class="text-center mt-4">
-                    <h:commandButton value="Salvar" action="#{taskMB.saveTask()}" class="btn btn-primary px-5" />
+                <div class="text-right mt-4 pt-3 border-top border-secondary">
+                    <h:commandButton value="Salvar Tarefa" action="#{taskMB.saveTask()}" class="btn btn-primary px-4" />
                 </div>
             </h:form>
         </div>

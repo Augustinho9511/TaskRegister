@@ -3,11 +3,11 @@ package bean;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -34,12 +34,26 @@ public class TaskMB implements Serializable {
 
     @PostConstruct
     public void init() {
-        task = new Task();
-        profile = new Profile();
         taskDAO = new TaskDAO();
         profileDAO = new ProfileDAO();
         
-       
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        Task tarefaQueVeioDoFlash = (Task) flash.get("tarefaEditada");
+        
+        
+        if (tarefaQueVeioDoFlash != null) {
+            this.task = tarefaQueVeioDoFlash;
+            
+            if (this.task.getResponsible() != null) {
+                this.profile = this.task.getResponsible();
+            } else {
+                this.profile = new Profile();
+            }
+        } else {
+            this.task = new Task();
+            this.profile = new Profile();
+        }
+        
         updateTaskList();
         this.profiles = profileDAO.list(); 
     }
@@ -90,15 +104,11 @@ public class TaskMB implements Serializable {
     }
     
     public String redirectToEdit(Long id) {
-        this.task = taskDAO.findById(id);
+    	Task t = taskDAO.findById(id);
         
-        if (this.task.getResponsible() != null) {
-            this.profile = this.task.getResponsible();
-        } else {
-            this.profile = new Profile();
-        }
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("tarefaEditada", t);
         
-        return "index"; 
+        return "index?faces-redirect=true";
     }
 
    
