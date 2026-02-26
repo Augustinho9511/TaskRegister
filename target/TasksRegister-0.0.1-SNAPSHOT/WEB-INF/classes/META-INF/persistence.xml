@@ -10,10 +10,14 @@
     
     <properties>
     
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/db_Task"/>
-      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://dpg-d6g4kjhr0fns73emqn40-a:5432/bancotarefas"/>
+      
+      <property name="javax.persistence.jdbc.user" value="bancotarefas_user"/>
+      
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="1234"/>
+      
+      <property name="javax.persistence.jdbc.password" value="Kcm3IIMhkETXa3hZk7rwhISWIeFOauXl"/>
+      
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       
