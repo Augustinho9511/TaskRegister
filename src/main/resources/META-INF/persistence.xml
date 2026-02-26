@@ -19,6 +19,8 @@
       <property name="javax.persistence.jdbc.password" value="Kcm3IIMhkETXa3hZk7rwhISWIeFOauXl"/>
       
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      
+      <property name="javax.persistence.jdbc.url" value="postgresql://bancotarefas_user:Kcm3IIMhkETXa3hZk7rwhISWIeFOauXl@dpg-d6g4kjhr0fns73emqn40-a.oregon-postgres.render.com/bancotarefas"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       
     </properties>
