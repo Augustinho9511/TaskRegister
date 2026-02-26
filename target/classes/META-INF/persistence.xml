@@ -9,7 +9,8 @@
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://dpg-d6g4kjhr0fns73emqn40-a:5432/bancotarefas"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://dpg-d6g4kjhr0fns73emqn40-a.oregon-postgres.render.com:5432/bancotarefas?sslmode=require"/>
+      
       <property name="javax.persistence.jdbc.user" value="bancotarefas_user"/>
       <property name="javax.persistence.jdbc.password" value="Kcm3IIMhkETXa3hZk7rwhISWIeFOauXl"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
